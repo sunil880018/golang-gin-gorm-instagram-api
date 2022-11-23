@@ -1,0 +1,18 @@
+
+---------------------- Steps to build instagram service in golang,gin,gorm --------------------------
+
+######## installing Dependencies #################
+1. go mod init instagram-service // initialize project 
+2. go get -u github.com/gin-gonic/gin // install gin
+3. go install golang.org/x/tools/gopls@latest // It provides IDE features to any LSP-compatible editor.It suggest all the go functions and import automatically
+4. install go extension in vscode
+5. Exit Vscode and Reopen vscode . Start Coding
+6. go get -u gorm.io/gorm  // install gorm for database ORM
+
+
+
+
+
+
+
+
