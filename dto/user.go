@@ -1,6 +1,6 @@
-package schemas
+package dto
 
-type User struct {
+type UserDTO struct {
 	UserId string `json:"userid" binding:"required"`
 	Name   string `json:"username" binding:"required"`
 	Email  string `json:"email" binding:"required"`

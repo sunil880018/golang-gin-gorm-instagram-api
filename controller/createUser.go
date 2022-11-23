@@ -1,14 +1,14 @@
 package controller
 
 import (
-	"instagram-service/schemas"
+	"instagram-service/dto"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 func CreateUserHandler(context *gin.Context) {
-	var user schemas.User
+	var user dto.UserDTO
 
 	if err := context.ShouldBindJSON(&user); err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

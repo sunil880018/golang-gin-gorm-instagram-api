@@ -2,7 +2,7 @@ package models
 
 import "gorm.io/gorm"
 
-type Photo struct {
+type UserPhotoDetails struct {
 	gorm.Model
 	UserId         string `gorm:"size:255;not null;unique" json:"userId"`
 	PhotoPath      string `gorm:"size:255;not null;unique" json:"photopath"`
