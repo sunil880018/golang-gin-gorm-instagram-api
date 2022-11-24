@@ -14,9 +14,9 @@ build instagram-service:
     image: golang:1.12-alpine
     stage: build
     script:
+        - go mod download
         - go get -d -v ./...
         - go install -v ./...
-        - go mod download
         - go build
     artifacts:
         paths:

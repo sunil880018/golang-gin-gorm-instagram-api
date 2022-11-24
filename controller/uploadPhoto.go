@@ -21,18 +21,27 @@ func UploadPhotoHandler(context *gin.Context) {
 		return
 	}
 
-	services.CreateImage(photo)
-	// upload photo on aws s3
+	photoObj, err := services.CreateImage(photo)
+	if err != nil {
+		context.JSON(http.StatusNotAcceptable, gin.H{"error": enums.NOT_ACCEPTABLE})
+		return
+	}
+	// upload photo on aws s3 and update Photo and UserPhotoDetails db tables
 	helper.UploadOnS3Bucket(photo)
 
-	services.CreateUserPhotoDetails(photo, userId)
+	userPhotoDetails, err := services.CreateUserPhotoDetails(photo, userId)
+
+	if err != nil {
+		context.JSON(http.StatusNotAcceptable, gin.H{"error": enums.NOT_ACCEPTABLE})
+		return
+	}
 	// upload in file directory
 	if err := context.SaveUploadedFile(imageFile, "images/"+imageFile.Filename); err != nil {
 		context.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": enums.INTERNAL_SERVER_ERROR})
 		return
 	}
 
-	context.JSON(http.StatusCreated, gin.H{"image": imageFile.Filename, "userid": userId})
+	context.JSON(http.StatusCreated, gin.H{"image": photoObj, "user": userPhotoDetails})
 }
 
 // curl --location --request POST 'localhost:8080/upload' \

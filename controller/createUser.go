@@ -15,8 +15,12 @@ func CreateUserHandler(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"error": enums.BAD_REQUEST})
 		return
 	}
-	services.CreateUser(user)
+	userObj, err := services.CreateUser(user)
+	if err != nil {
+		context.JSON(http.StatusNotAcceptable, gin.H{"error": enums.NOT_ACCEPTABLE})
+		return
+	}
 	context.JSON(http.StatusCreated, gin.H{
-		"user": enums.CREATED,
+		"user": userObj,
 	})
 }

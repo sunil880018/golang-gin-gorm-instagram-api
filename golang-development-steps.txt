@@ -1,7 +1,8 @@
 
----------------------- Steps to build instagram service in golang,gin,gorm --------------------------
+# Steps to build instagram service in golang,gin,gorm 
 
-######## installing Dependencies #################
+STEP 1. installing Dependencies 
+
 1. go mod init instagram-service // initialize project 
 2. go get -u github.com/gin-gonic/gin // install gin
 3. go install golang.org/x/tools/gopls@latest // It provides IDE features to any LSP-compatible editor.It suggest all the go functions and import automatically
@@ -10,9 +11,53 @@
 6. go get -u gorm.io/gorm  // install gorm for database ORM
 
 
+----------------------------- Api Dependencies ---------------------
+go get \
+    github.com/gin-gonic/gin \
+    github.com/golang-jwt/jwt/v4 \
+    github.com/joho/godotenv \
+    golang.org/x/crypto \
+    gorm.io/driver/postgres \
+    gorm.io/gorm
+
+
+
+1. Go Cryptography: This provides supplementary Go cryptography libraries.
+2. GoDotEnv: This will help with managing environment variables.
+3. GORM: This is an ORM (Object Relational Mapper) for Golang. In addition to the library, the GORM dialect (driver) for Postgres is installed to enable connections to PostgreSQL databases.
+4. JWT-Go: A Go implementation of JSON Web Tokens.
 
 
 
 
+STEP 2. Create a new file named .env and add the following to it
+
+# Database credentials
+DB_HOST = "localhost"
+DB_USER = "instagram_user"
+DB_PASSWORD = "instagram_user"
+DB_NAME = "instagram"
+DB_PORT = "5000"
+
+# Authentication credentials
+TOKEN_TTL="2000"
+JWT_PRIVATE_KEY="THIS_IS_NOT_SO_SECRET+YOU_SHOULD_DEFINITELY_CHANGE_IT"
+
+# AWS credentials
+AWS_REGION = ap-northeast-1
+AWS_ACCESS_KEY_ID = DGSDGAKIAIOSN7EXAMPLEDFGDFSGF
+AWS_SECRET_ACCESS_KEY = FGSDFGSDFHwJalrXUtnFEMbPxRfiCYEXAMPLEKEYDGDFGDSFG
 
 
+
+
+STEP 3. Prepare models
+
+
+STEP 4. Create Database connections
+
+
+STEP 5. Create Route or Endpoints
+
+
+STEP 6. Start making CRUD Operations

@@ -1,19 +1,18 @@
 package services
 
 import (
-	"fmt"
 	"instagram-service/database"
 	"instagram-service/dto"
 	"instagram-service/models"
 )
 
-func CreateUserPhotoDetails(photo dto.PhotoDTO, userId string) {
+func CreateUserPhotoDetails(photo dto.PhotoDTO, userId string) (models.UserPhotoDetails, error) {
 	var userPhotoDetailsObj models.UserPhotoDetails
 	userPhotoDetailsObj.UserId = userId
 	userPhotoDetailsObj.PhotoUrl = photo.PhotoUrl
-	userPhotoDetailsRecord := database.Database.Create(&userPhotoDetailsObj)
-	if userPhotoDetailsRecord != nil {
-		panic(userPhotoDetailsRecord.Error)
+	err := database.Database.Create(&userPhotoDetailsObj).Error
+	if err != nil {
+		return models.UserPhotoDetails{}, err
 	}
-	fmt.Println(photo, userId)
+	return userPhotoDetailsObj, nil
 }

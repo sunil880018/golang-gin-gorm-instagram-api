@@ -1,7 +1,6 @@
 package services
 
 import (
-	"fmt"
 	"instagram-service/database"
 	"instagram-service/dto"
 	"instagram-service/models"
@@ -9,15 +8,15 @@ import (
 	"github.com/google/uuid"
 )
 
-func CreateUser(user dto.UserDTO) {
+func CreateUser(user dto.UserDTO) (models.User, error) {
 	var userObj models.User
 	userObj.UserId = uuid.New().String()
 	userObj.Name = user.Name
 	userObj.Email = user.Email
 	userObj.DOB = user.DOB
-	userRecord := database.Database.Create(&userObj)
-	if userRecord != nil {
-		panic(userRecord.Error)
+	err := database.Database.Create(&userObj).Error
+	if err != nil {
+		return models.User{}, err
 	}
-	fmt.Println(userObj)
+	return userObj, nil
 }
