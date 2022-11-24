@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: instagram-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      name: instagram-app
+  template:
+    metadata:
+      labels:
+        name: instagram-app
+    spec:
+      containers:
+      - name: instagram-app
+        image: instagram-app-image
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: test-secret
+        ports:
+          - containerPort: 3000

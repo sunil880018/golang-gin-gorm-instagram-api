@@ -1,8 +1,7 @@
 package controller
 
 import (
-	"fmt"
-	"instagram-service/dto"
+	"instagram-service/services"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -10,15 +9,13 @@ import (
 
 func SearchPhotoHandler(context *gin.Context) {
 	title := context.Param("title") // path parameter
-
-	fmt.Println(title)
-
-	images := []dto.ResponsePhotoDTO{
-		{PhotoId: "12331313", PhotoUrl: "http://ssfa23dsfsfdff", Title: "SunSet"},
-		{PhotoId: "423423432", PhotoUrl: "http://ssfa23dsfsfdff", Title: "SunSet"},
+	photos, err := services.SearchPhotoByTitle(title)
+	if err != nil {
+		context.JSON(http.StatusNoContent, gin.H{
+			"images": photos,
+		})
 	}
-
 	context.JSON(http.StatusOK, gin.H{
-		"imageList": images,
+		"images": photos,
 	})
 }

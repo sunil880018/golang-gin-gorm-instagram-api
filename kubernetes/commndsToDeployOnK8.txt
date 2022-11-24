@@ -1,0 +1,39 @@
+
+STEP 1. Build the Docker image
+     command : docker build -t <your_user_name>/instagram-app
+     
+STEP 2. Run the container.
+     command : docker run -it -p 3000:3000 <your_user_name>/instagram-app
+
+STEP 3. Login to the Docker Resgistry
+     command : docker login
+
+STEP 4. Push the image on th Docker Resgistry
+     command : docker push <your_user_name>/my-go-app
+
+STEP 5. minikube which implements a local Kubernetes cluster on macOS, Linux, and Windows. 
+        Run the following command on your command line to begin:
+     command : minikube start
+
+STEP 6. Create deployment.yaml
+        One kind of Kubernetes object, known as a deployment, is a set of identical, 
+        indistinguishable pods, where a pod is a grouping of one or more containers 
+        which are able to communicate over the same shared network and interact with 
+        the same shared storage.
+     
+STEP 7. Run the deployment file
+     command : kubectl apply -f deployment.yml
+
+STEP 8. Create a Service, service.yml
+        Now that you have a successful Kubernetes deployment, you’re ready to expose 
+        your application to the outside world. In order to do this you’ll need to define
+        another kind of kubernetes object: a service. This service will expose the same 
+        port on all of your cluster’s nodes. Your nodes will then forward any incoming 
+        traffic on that port to the pods running your application.
+
+STEP 9. Run the Service.yml
+     command : kubectl apply -f service.yml
+
+STEP 10.To view the application, you will need the new load balancer’s IP address. 
+        Find it by running the command:
+     command : kubectl get services
