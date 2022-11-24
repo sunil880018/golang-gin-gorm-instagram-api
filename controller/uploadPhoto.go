@@ -12,7 +12,6 @@ import (
 
 func UploadPhotoHandler(context *gin.Context) {
 	imageFile, _ := context.FormFile("image")
-
 	var photo dto.PhotoDTO
 	photo.Title = imageFile.Filename
 
@@ -26,6 +25,7 @@ func UploadPhotoHandler(context *gin.Context) {
 	// upload photo on aws s3
 	helper.UploadOnS3Bucket(photo)
 
+	services.CreateUserPhotoDetails(photo, userId)
 	// upload in file directory
 	if err := context.SaveUploadedFile(imageFile, "images/"+imageFile.Filename); err != nil {
 		context.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": enums.INTERNAL_SERVER_ERROR})
