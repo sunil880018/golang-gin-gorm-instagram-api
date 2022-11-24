@@ -2,9 +2,11 @@ package controller
 
 import (
 	"instagram-service/dto"
+	"instagram-service/services"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 func CreateUserHandler(context *gin.Context) {
@@ -15,9 +17,10 @@ func CreateUserHandler(context *gin.Context) {
 		return
 	}
 
-	// store in database
+	var db *gorm.DB
+	services.CreateUser(user, db)
 
 	context.JSON(http.StatusCreated, gin.H{
-		"user": user,
+		"user": "",
 	})
 }

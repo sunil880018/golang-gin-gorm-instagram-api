@@ -7,8 +7,6 @@ import (
 )
 
 func UploadPhotoHandler(context *gin.Context) {
-	// Multipart form
-
 	imageFile, _ := context.FormFile("image")
 	userId := context.PostForm("userid")
 
@@ -16,7 +14,7 @@ func UploadPhotoHandler(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"error": "userid missing "})
 		return
 	}
-	// Upload the file to specific dst.
+
 	if err := context.SaveUploadedFile(imageFile, "images/"+imageFile.Filename); err != nil {
 		context.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
 			"error": "Unable to save the file",

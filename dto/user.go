@@ -7,6 +7,13 @@ type UserDTO struct {
 	DOB    string `json:"dob" binding:"required"`
 }
 
+type ResponseUserDTO struct {
+	UserId string `json:"userid"`
+	Name   string `json:"username"`
+	Email  string `json:"email"`
+	DOB    string `json:"dob"`
+}
+
 // {
 // "userid":"123",
 // "username":"sunil",

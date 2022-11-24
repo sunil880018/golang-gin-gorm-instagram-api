@@ -1,0 +1,31 @@
+version: "3"   # docker compose version
+
+services:      # can have multiple container
+ instagram-service:     # container name
+  build: .     # build the Dockerfile which is inside the current directory , dot represent current directory
+  ports:       # node-app container ports, It can be a list of array,- represent list
+  - "3000:3000"  # <localhost port>:<container port>
+  volumes:     # %cd% or ${pwd}, you have seen in previous
+    - ./:/instagram-service
+  environment:         # environment variables for port define
+    - PORT = 3000   
+  # env_file: # importing .env file variables
+  #   - ./.env
+
+  depends_on: # our project depend on postgres container
+   - postgres
+
+
+ postgres:  # using postgres db container, this already made image so no need to biuid, port 
+  image: postgres
+  environment:
+    - DB_HOST = "localhost"
+    - DB_USER = "instagram_user"
+    - DB_PASSWORD = "instagram_user"
+    - DB_NAME = "instagram"
+    - DB_PORT = "5000"
+  volumes:  # making data/db files in postgres container
+   - postgres:/data/db
+
+volumes:  # using data/db file 
+ postgres:
