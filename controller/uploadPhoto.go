@@ -1,6 +1,10 @@
 package controller
 
 import (
+	"instagram-service/dto"
+	"instagram-service/enums"
+	"instagram-service/helper"
+	"instagram-service/services"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -8,17 +12,23 @@ import (
 
 func UploadPhotoHandler(context *gin.Context) {
 	imageFile, _ := context.FormFile("image")
-	userId := context.PostForm("userid")
 
+	var photo dto.PhotoDTO
+	photo.Title = imageFile.Filename
+
+	userId := context.PostForm("userid")
 	if userId == "" {
-		context.JSON(http.StatusBadRequest, gin.H{"error": "userid missing "})
+		context.JSON(http.StatusBadRequest, gin.H{"error": enums.BAD_REQUEST})
 		return
 	}
 
+	services.CreateImage(photo)
+	// upload photo on aws s3
+	helper.UploadOnS3Bucket(photo)
+
+	// upload in file directory
 	if err := context.SaveUploadedFile(imageFile, "images/"+imageFile.Filename); err != nil {
-		context.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
-			"error": "Unable to save the file",
-		})
+		context.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": enums.INTERNAL_SERVER_ERROR})
 		return
 	}
 

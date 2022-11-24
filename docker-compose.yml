@@ -17,7 +17,8 @@ services:      # can have multiple container
 
 
  postgres:  # using postgres db container, this already made image so no need to biuid, port 
-  image: postgres
+  image: postgres:12.8
+  restart: always
   environment:
     - DB_HOST = "localhost"
     - DB_USER = "instagram_user"
