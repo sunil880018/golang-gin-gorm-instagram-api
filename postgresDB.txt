@@ -1,0 +1,10 @@
+---------------> database setup for student api microservice <-----------------
+
+1. sudo -i -u postgres
+2. psql
+3. create database instagram_service
+4. create schema instagram_schema
+5. create role instagram_user
+6. alter role instagram_user with login password 'api123'
+7. alter database instagram_service owner to instagram_user
+8. grant all privileges on database instagram_service to instagram_user

@@ -20,7 +20,7 @@ func loadDatabase() {
 	database.Connect()
 	database.Database.AutoMigrate(&models.Photos{}) // automatic tables created in postgres db
 	database.Database.AutoMigrate(&models.User{})
-	database.Database.AutoMigrate(&models.UserFollow{})
+	database.Database.AutoMigrate(&models.UserFollower{})
 	database.Database.AutoMigrate(&models.UserPhotoDetails{})
 }
 
