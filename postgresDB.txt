@@ -1,4 +1,4 @@
----------------> database setup for student api microservice <-----------------
+---------------> database setup for instagram api microservice <-----------------
 
 1. sudo -i -u postgres
 2. psql
