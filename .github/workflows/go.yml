@@ -29,5 +29,7 @@ jobs:
       run: go build -v ./...
 
   test:
+    runs-on: ubuntu-latest
+    steps:
     - name: Testing the instagram-app
       run: go test -v ./...
