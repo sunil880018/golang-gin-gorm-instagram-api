@@ -28,5 +28,6 @@ jobs:
     - name: Building the instagram-app
       run: go build -v ./...
 
+  test:
     - name: Testing the instagram-app
       run: go test -v ./...
