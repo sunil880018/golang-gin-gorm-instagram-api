@@ -1,3 +1,4 @@
+# https://docs.gitlab.com/ee/ci/examples/
 stages:
     - build
     - test
@@ -17,10 +18,12 @@ build instagram-service:
         - go mod download
         - go get -d -v ./...
         - go install -v ./...
-        - go build
+        - mkdir -p instagram_binaries
+        - go build -o instagram_binaries ./...
+
     artifacts:
         paths:
-            - build
+            - instagram_binaries
 
 test instagram-service:
     image: golang:1.12-alpine
