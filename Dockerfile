@@ -8,7 +8,7 @@ COPY go.mod ./
 COPY go.sum ./
 
 # Go modules wiil be installed into a directory inside the image
-RUN go mod Download
+RUN go mod download
 
 
 # Copy everything from the current directory to the PWD (Present Working Directory) inside the container
