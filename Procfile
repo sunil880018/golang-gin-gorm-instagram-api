@@ -1,1 +1,1 @@
-web: bin/instagram-app
+web: go run main.go
