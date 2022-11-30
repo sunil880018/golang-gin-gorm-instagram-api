@@ -27,7 +27,7 @@ func loadDatabase() {
 func serveApplication() {
 	r := gin.Default()
 	r.MaxMultipartMemory = 8 << 20
-
+	r.GET("/", controller.Greetings)
 	r.POST("/user", controller.CreateUserHandler)
 	r.POST("/upload", controller.UploadPhotoHandler)
 	r.GET("/image/:title", controller.SearchPhotoHandler)
