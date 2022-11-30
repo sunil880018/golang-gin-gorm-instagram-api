@@ -60,7 +60,7 @@ jobs:
       run: go test -v ./...
       
       
-  app-image: # making image and push instagram-service image on docker hub
+  building-docker-image: # making image and push instagram-service image on docker hub
     runs-on: ubuntu-latest
     steps:
       -
@@ -86,9 +86,6 @@ jobs:
           file: ./Dockerfile
           load: true
           tags: instagram-app-image
-      - 
-        name: Testing the instagram-app
-        run: docker push sunildev880018/instagram-app-image
 
 
   # deploy:
