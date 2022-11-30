@@ -86,6 +86,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: instagram-app-image
+      - 
+        name: Testing the instagram-app
         run: docker push sunildev880018/instagram-app-image
 
 
