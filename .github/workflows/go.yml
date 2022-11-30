@@ -86,8 +86,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: instagram-app-image
-        run:
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/instagram-app-image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/instagram-app-image
 
 
   # deploy:
