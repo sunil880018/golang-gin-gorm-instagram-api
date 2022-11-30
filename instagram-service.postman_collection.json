@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "afcc8239-bd32-4bc6-a26d-57ca71ec1ab3",
+		"name": "instagram-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "14112596"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"userid\":\"123\",\r\n\"username\":\"sunil\",\r\n\"email\":\"aba@gmail.com\",\r\n\"dob\":\"01-01-2001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/user"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/sunil/OneDrive/Desktop/anu.jpg"
+						},
+						{
+							"key": "userid",
+							"value": "34724y6274",
+							"type": "text"
+						}
+					]
+				},
+				"url": "localhost:8080/upload"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/image/title",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/image/sunset"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/follow",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"userid\":\"123\",\r\n\"username\":\"sunil\",\r\n\"email\":\"aba@gmail.com\",\r\n\"dob\":\"01-01-2001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/follow"
+			},
+			"response": []
+		}
+	]
+}
